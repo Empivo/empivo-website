@@ -1,0 +1,502 @@
+body {
+    /* font-family: 'Nunito', sans-serif !important; */
+    color: #707070 !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+}
+
+:root {
+    --bs-orange: #F05A28;
+    --bs-blue: #2E3191;
+    --bs-blue-light: #4E4ED0;
+    --bs-blue-dark: #0D0B2E;
+    --bs-dark: #000;
+    --bs-green: #339E0D;
+}
+
+.employee_survey_form_wrap {
+    padding: 54px 0;
+}
+
+.employee_survey_form_wrap .prompted {
+    padding: 24px 0;
+}
+
+.superviser {
+    padding: 20px;
+    background: #f3f3f3;
+    border-radius: 16px;
+    margin: 20px 0;
+}
+
+.superviser table {
+    border: 1px solid #ddd;
+    margin: 20px 0 0;
+}
+
+.superviser table th,
+.superviser table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+}
+
+.superviser table tr:nth-child(odd) td {
+    background: #fff;
+}
+
+.employee_survey_form_wrap h4 {
+    font-size: 20px;
+    line-height: 1.5;
+    color: #333;
+    font-weight: bold;
+}
+
+.prompted label,
+.faq_textarea .faq_list label {
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.prompted label input[type="checkbox"],
+.place_to_work input[type="checkbox"] {
+    width: 21px;
+    height: 21px;
+    flex: 0 0 21px;
+    margin-right: 8px;
+}
+
+.prompted label input[type="text"] {
+    margin-left: 10px;
+    border: none;
+    border-bottom: 1px solid #333;
+}
+
+.prompted label input[type="text"]:focus {
+    outline: none;
+}
+
+.employee_survey_form_wrap h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 24px;
+}
+
+.faq_textarea .faq_list {
+    margin-bottom: 24px;
+}
+
+.faq_textarea .faq_list label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 500;
+}
+
+.place_to_work input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/******* employee application ********/
+
+.employee_application_form input[type="checkbox"] {
+    width: 21px;
+    height: 21px;
+    flex: 0 0 21px;
+    margin-right: 8px;
+}
+
+.form_group label {
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    /* display: flex; */
+    align-items: center;
+    white-space: nowrap;
+}
+
+.similar_wrapper {
+    max-width: 980px;
+    margin: auto;
+}
+
+
+
+.text_wrap_row {
+    padding: 15px 0;
+}
+
+.form_input {
+    border: none;
+    border-bottom: 1px solid #E6E6E6;
+    height: 36px;
+    font-size:14px;
+    padding:5px;
+}
+
+.form_input:focus {
+    outline: none;
+    border-bottom: 1px solid #b1b1b1;
+}
+
+
+/* EmployeeAgreement */
+
+
+
+
+.radio_list label {
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+.radio_list label input {
+    width: 20px;
+    height: 20px;
+}
+
+.feedback_block {
+    background: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.feedback_block textarea {
+    border-radius: 6px;
+}
+
+.scoring ul li {
+    padding: 5px 0;
+}
+
+
+
+
+/* R-14-9-2023 */
+.account_number_fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.account_number_fields input {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+}
+
+
+
+/* R-15-9-2023 */
+.text_wrap_row strong {
+    color: #333;
+    font-size: 18px;
+}
+
+.large_table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.large_table:-webkit-scrollbar {
+    width: 5px;
+}
+
+.large_table table {
+    min-width: 1000px;
+}
+
+.light_table td {
+    background-color: #f1f1f1;
+}
+
+.rating_block td {
+    border: none;
+}
+
+.rating_block th {
+    background: #ddd;
+ }
+
+.rating_scale ul li {
+    padding: 10px 15px;
+    background: #f1f1f1;
+    margin-right: 10px;
+    border-radius: 5px;
+    color: #000;
+}
+
+.rating_scale ul {
+    margin-bottom: 10px;
+}
+
+.Performance_point li {
+    padding: 15px 0;
+}
+
+.rating_block table {
+    border: 1px solid #ddd;
+}
+
+
+
+/* PDF_css */
+
+.Employee_certificate {
+    display: flex;
+    text-align: center;
+    border-bottom: 2px solid #000;
+}
+
+.empc_top_left {
+    text-align: left;
+    font-size: 13px;
+    flex: 0 0 180px;
+}
+
+.empc_top_left strong {
+    color: #000;
+    font-size: 32px;
+}
+
+
+
+.empc_center_title strong {
+    text-align: center;
+    display: block;
+    color: #000;
+    font-size: 32px;
+}
+
+.empc_center_title {
+    padding: 0 15px;
+    flex: 1;
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
+}
+
+.omb_number {
+    font-size: 13px;
+    flex: 0 0 180px;
+}
+
+.omb_number strong {
+    font-size: 32px;
+    display: block;
+    color: #000;
+}
+
+.step_outer_wrap {
+    padding: 20px 0;
+    border-bottom: 1px solid #333;
+}
+
+
+.step_left_title {
+    font-size: 24px;
+    color: #000;
+}
+
+.step_number {
+    display: block;
+    margin-top: 0;
+    font-size: 20px;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.step_block {
+    border: 1px solid #ddd;
+    background-color: #f4f6fd;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.step_block .form_input {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    height: 36px;
+}
+
+.step_block label {
+    margin: 0 0 6px 0;
+}
+
+.step_block .form_group {
+    margin-bottom: 10px;
+}
+
+.ms-count {
+    padding: 10px;
+    width: 64px;
+    text-align: center;
+    font-size: 20px;
+    color: #000;
+    font-weight: 800;
+
+    margin-right: 15px;
+}
+
+
+.table_border {
+    border-left: 1px solid #333;
+    border-right: 1px solid #333
+}
+
+.step_right_bar {
+    padding: 10px;
+}
+
+.claim_dependent_table {
+    border-bottom: 1px solid #333;
+}
+
+/* .step-caption_left {
+    flex: 0 0 64%;
+    max-width: 64%;
+    padding-right: 15px;
+} */
+
+.tep-caption_left {
+    flex: 0 0 75%;
+    max-width: 75%;
+}
+
+.bottom_align {
+    vertical-align: bottom;
+}
+
+.large_table_outer {
+    overflow-x: auto;
+}
+
+.large_table_outer table {
+    width: 1330px;
+}
+
+.higher_paying strong small {
+    color: #333;
+}
+
+
+/* ===================================== New ========================= */
+
+.radio_btn label {
+    margin: 3px 0 0 6px;
+    white-space: normal;
+  }
+  .alpha_list {
+    list-style-type: upper-alpha;
+  }
+  .alpha_list li {margin-bottom: 20px;}
+  .fs-7 {font-size: 14px;}
+
+
+/* after-developement */
+
+.form_pagger span {
+    padding-right: 10px;
+    font-weight: bold;
+}
+.form_group div.text-danger {
+    /* position: absolute; */
+    bottom: -24px;
+    font-size:14px;
+    left: 0;
+
+}
+
+.form_group {
+    position: relative;
+    margin-bottom:10px;
+}
+
+
+/* form_panel */
+
+.full_width_panel{max-width:100%;}
+
+.signature_pic {
+    display: flex;
+    align-items: center;
+}
+
+.signature_pic  .upload-img {
+    /* max-width: 54px;
+    flex: 0 0 54px; */
+    height: 69px;
+    margin: 0;
+}
+
+
+.signature_pic .upload-img img{
+    object-fit: contain;
+}
+.signature_pic .position-relative.me-3 {
+    flex: 1;
+    max-width: 100%;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+textarea.form_input {
+    height: 100px;
+}
+
+.employee_application_form_wrap strong.text-lg,.employee_application_form .page_title .text-lg {
+    font-size: 1.2rem!important;
+}
+
+.my-account-form tr td, .my-account-form tr th{vertical-align:middle;}
+.account_number_fields > div {
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.employeSurve.table{
+ min-width:840px!important;
+}
+
+
+.my-account-form .employeSurve.table thead, .my-account-form .employeSurve.table tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.telework label{margin-bottom:10px;}
+
+
+
+.requestForText .form_group label {
+    white-space: normal;
+}
+input[type="date"], input[type="time"]{min-width:120px; font-size:14px;}
+.sign_row{align-items:center;}
+.radio_btn .form-check-label{display: initial;}
+
+
+
+/* new css */
+
+
+
+

@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../skillmatics-company"
+		},
+		{
+			"path": "../../../skillmatics-admin"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {}
+}
