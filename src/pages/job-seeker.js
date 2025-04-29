@@ -56,7 +56,6 @@ function JobSeeker() {
         cityID: (filterData?.cityID === "all" ? "" : filterData?.cityID) || allIds?.cityID,
         countryID: (filterData?.countryID === "all" ? "" : filterData?.countryID) || allIds?.countryID,
         skillIds: (filterData?.skillID === "all" ? "" : filterData?.skillID.join(",")) || allIds?.skillID,
-        // skillIds: filterData?.skillID.join(',') || allIds?.skillID
       };
 
       const path = apiPath.getJobs;
@@ -158,6 +157,12 @@ function JobSeeker() {
       query: obj,
     });
   };
+  useEffect(() => {
+    // Set search term from URL when component mounts or query changes
+    if (router.query.search) {
+      setSearchTerm(router.query.search);
+    }
+  }, [router.query.search]);
 
   useEffect(() => {
     const allKeysBlank = Object.values(filterData).every((value) => value === "");
@@ -165,7 +170,8 @@ function JobSeeker() {
       jobList();
     }
     categoryList();
-  }, [filterData, page]);
+  }, [filterData, page, searchTerm]); 
+
 
   useEffect(() => {
     const catId = Helpers.orCondition(categoryData.find((item) => item.slug == router?.query?.category)?._id, "");
@@ -183,6 +189,7 @@ function JobSeeker() {
     if (router?.query?.skills || filterData.skillID == "all") activeArr.push("4");
     if (!router?.query?.category && !router?.query?.subCategory && Object.keys(router?.query).length === 0) activeArr.push("0", "1", "2", "3", "4");
     setActiveItem(activeArr);
+    
     const timeoutId = setTimeout(() => {
       setCategoryID(catId);
       setSubCategoryID(subId);
@@ -210,7 +217,7 @@ function JobSeeker() {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [router?.query?.slug, categoryData, subCategoryData, countryData, cityData]);
+  }, [router?.query, categoryData, subCategoryData, countryData, cityData]);
 
   useEffect(() => {
     if (categoryID) {
@@ -476,14 +483,26 @@ function JobSeeker() {
                 <span className="search_icon">
                   <Image src="/images/search.svg" width={15} height={15} alt="" />
                 </span>
-                <Form.Control placeholder="Search by Job Title" className="job_search_form" aria-describedby="basic-addon1" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}></Form.Control>
+                <Form.Control 
+                  placeholder="Search by Job Title" 
+                  className="job_search_form" 
+                  aria-describedby="basic-addon1" 
+                  value={searchTerm} 
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      jobList();
+                    }
+                  }}
+                />
                 <Button
                   onClick={() => {
                     jobList();
                   }}
                   className="theme_lg_btn"
                 >
-                  Search{" "}
+                  Search
                 </Button>
               </Form>
               {!loading && (

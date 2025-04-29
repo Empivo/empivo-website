@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import Slider from "react-slick";
-import { Modal, Col, Container, Row, Button } from "react-bootstrap";
+import { Modal, Col, Container, Row, Button, Accordion, Form, Figure } from "react-bootstrap";
 import Image from "next/image";
 import apiPath from "@/utils/pathObj";
 import { apiGet } from "@/utils/apiFetch";
@@ -21,12 +22,12 @@ export default function Home() {
     speed: 500,
     nextArrow: (
       <div>
-        <Image src="/images/right_arrow.png" width={19} height={14} alt="" />
+        <Image width={0} height={0} src="/images/right_arrow.png" alt="" />
       </div>
     ),
     prevArrow: (
       <div>
-        <Image src="/images/left_arrow.png" width={19} height={14} alt="" />
+        <Image width={0} height={0} src="/images/left_arrow.png" alt="" />
       </div>
     ),
     responsive: [
@@ -46,6 +47,46 @@ export default function Home() {
   const { user } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false);
+  const [jobsData, setJobsData] = useState([]);
+  const [skillData, setSkillData] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
+  const [countryData, setCountryData] = useState([]);
+  const [cityData, setCityData] = useState([]);
+  const [subCategoryData, setSubCategoryData] = useState([]);
+  const [pagination, setPagination] = useState();
+  const [page, setPage] = useState(1);
+  const [categoryID, setCategoryID] = useState("");
+  const [subCategoryID, setSubCategoryID] = useState("");
+  const [countryID, setCountryID] = useState("");
+  const [cityID, setCityID] = useState("");
+  const [skillID, setSkillID] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [applyJobs, setApplyJobs] = useState(false);
+  const [skillApply, setSkillApply] = useState({});
+  const [activeItem, setActiveItem] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [pageRecord] = useState({
+    total: 0,
+    page: 1,
+    limit: 10,
+    totalPages: 1
+  })
+  const { setSubscriptionID } = useContext(AuthContext)
+  const [subscriptionList, setSubscriptionList] = useState([])
+  const [filterData, setFilterData] = useState({
+    category: "",
+    searchKey: "",
+    isReset: false,
+    isFilter: false,
+    categoryID: "",
+    subCategoryID: "",
+    cityID: "",
+    countryID: "",
+    skillID: [],
+  });
+  const [searchJobTitle, setSearchJobTitle] = useState("");
+  const [searchLocation, setSearchLocation] = useState("");
+
 
   const handleClose = () => {
     setShow(false);
@@ -59,7 +100,7 @@ export default function Home() {
           setBanner(data.results);
         }
       }
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const employeeTaskNotification = async () => {
@@ -72,8 +113,219 @@ export default function Home() {
           setTaskNotification(data.results);
         }
       }
-    } catch (error) {}
+    } catch (error) { }
   };
+
+  useEffect(() => {
+    getSubscriptionList()
+  }, [filterData])
+
+  const allPlansInclude = [
+    {
+      icon: '/images/planincimg1.png',
+      title: 'Unlimited jobs and users'
+    },
+    {
+      icon: '/images/planincimg2.png',
+      title: 'Customizable hiring steps and templates'
+    },
+    {
+      icon: '/images/planincimg3.png',
+      title: 'Advanced search, tagging and team collaboration tools'
+    },
+    {
+      icon: '/images/planincimg4.png',
+      title: 'Hireology iOS and Android mobile app'
+    },
+    {
+      icon: '/images/planincimg5.png',
+      title: 'New customer onboarding'
+    },
+    {
+      icon: '/images/planincimg6.png',
+      title: 'Email and phone support'
+    }
+  ]
+
+  const getSubscriptionList = async (pageNumber = pageRecord.page) => {
+    try {
+      let condi = {
+        page: pageNumber || 1
+      }
+      var path = apiPath.getSubscriptionList
+      const result = await apiGet(path, condi)
+      var response = result?.data?.results
+      setSubscriptionList([...subscriptionList, ...response.docs])
+      setPagination(response)
+    } catch (error) {
+      console.log('error:', error)
+    }
+  }
+  const findJobs = (e) => {
+    e.preventDefault();
+
+    const lowerCaseJobTitle = searchJobTitle.toLowerCase().replace(/\s+/g, '-');
+    const lowerCaseLocation = searchLocation.toLowerCase();
+
+    router.push({
+      pathname: `/job-seeker`,
+      query: {
+        search: searchJobTitle,  // Add this line to pass the search term
+        category: "",
+        country: ""
+      },
+    });
+
+  }
+
+
+  const jobList = async (allIds) => {
+    try {
+      let condi = {
+        page: page || 1,
+        keyword: searchTerm?.trim(),
+        subCategoryID: (filterData?.subCategoryID === "all" ? "" : filterData?.subCategoryID) || allIds?.subCategoryID,
+        categoryID: (filterData?.categoryID === "all" ? "" : filterData?.categoryID) || allIds?.categoryID,
+        cityID: (filterData?.cityID === "all" ? "" : filterData?.cityID) || allIds?.cityID,
+        countryID: (filterData?.countryID === "all" ? "" : filterData?.countryID) || allIds?.countryID,
+        skillIds: (filterData?.skillID === "all" ? "" : filterData?.skillID.join(",")) || allIds?.skillID,
+        // skillIds: filterData?.skillID.join(',') || allIds?.skillID
+      };
+
+      const path = apiPath.getJobs;
+      const result = await apiGet(path, condi, false);
+      const response = result?.data?.results;
+      if (page > 1) {
+        if (jobsData.length <= page * 10) setJobsData([...jobsData, ...response.docs]);
+      } else setJobsData(response.docs);
+      setPagination(response);
+    } catch (error) {
+      console.log("error in get all jobs list==>>>>", error.message);
+    }
+  };
+
+  const subCategoryList = async () => {
+    try {
+      const path = apiPath.subCategoryListID;
+      const result = await apiGet(path, { categoryID: categoryID }, false);
+      const response = result?.data?.results;
+      if (result?.data?.success) {
+        setSubCategoryData(response);
+      } else {
+        setSubCategoryData([]);
+      }
+    } catch (error) {
+      console.log("error in get all sub category list==>>>>", error.message);
+    }
+  };
+
+  const categoryList = async () => {
+    try {
+      const path = apiPath.filterList;
+      const result = await apiGet(path, {}, false);
+      const response = result?.data?.results?.category;
+      const responseCountry = result?.data?.results?.country;
+      const responseSkills = result?.data?.results?.skills;
+      setCategoryData(response);
+      setCountryData(responseCountry);
+      setSkillData(responseSkills);
+    } catch (error) {
+      console.log("error in get all category list==>>>>", error.message);
+    }
+  };
+
+  const cityList = async () => {
+    try {
+      const path = apiPath.cityListID;
+      const result = await apiGet(path, { countryID: countryID }, false);
+      const response = result?.data?.results;
+      if (result?.data?.success) {
+        setCityData(response);
+      } else {
+        setCityData([]);
+      }
+    } catch (error) {
+      console.log("error in get all sub city list==>>>>", error.message);
+    }
+  };
+
+
+  useEffect(() => {
+    const allKeysBlank = Object.values(filterData).every((value) => value === "");
+    if (!allKeysBlank) {
+      jobList();
+    }
+    categoryList();
+  }, [filterData, page]);
+
+  useEffect(() => {
+    const catId = Helpers.orCondition(categoryData.find((item) => item.slug == router?.query?.category)?._id, "");
+    const subId = Helpers.orCondition(subCategoryData.find((item) => item.slug == router?.query?.subCategory)?._id, "");
+    const countId = Helpers.orCondition(countryData.find((item) => item.slug == router?.query?.country)?._id, "");
+    const cityId = Helpers.orCondition(cityData.find((item) => item.slug == router?.query?.city)?._id, "");
+
+    const skillIds = skillData.filter((i) => router?.query?.skills?.split("&").includes(i.slug))?.map((i) => i?._id);
+
+    let activeArr = [];
+    if (router?.query?.country || filterData.countryID == "all") activeArr.push("0");
+    if (router?.query?.city || filterData.cityID == "all") activeArr.push("1");
+    if (router?.query?.category || filterData.categoryID == "all") activeArr.push("2");
+    if (router?.query?.subCategory || filterData.subCategoryID == "all") activeArr.push("3");
+    if (router?.query?.skills || filterData.skillID == "all") activeArr.push("4");
+    if (!router?.query?.category && !router?.query?.subCategory && Object.keys(router?.query).length === 0) activeArr.push("0", "1", "2", "3", "4");
+    setActiveItem(activeArr);
+    const timeoutId = setTimeout(() => {
+      setCategoryID(catId);
+      setSubCategoryID(subId);
+      setCountryID(countId);
+      setCityID(cityId);
+      setSkillID(skillIds || []);
+      const obj = {};
+      if (catId) obj.catId = catId;
+      if (subId) obj.subId = subId;
+      if (countId) obj.countId = countId;
+      if (cityId) obj.cityId = cityId;
+      if (skillIds?.length) obj.skillIds = skillIds;
+      if (Object.keys(obj)?.length === Object.keys(router?.query || {})?.length) {
+        if (categoryID) {
+          jobList({
+            categoryID: catId,
+            cityID: cityId,
+            countryID: countId,
+            skillID: skillIds.join(","),
+            subCategoryID: subId,
+          });
+        }
+      }
+    }, 500);
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [router?.query?.slug, categoryData, subCategoryData, countryData, cityData]);
+
+  useEffect(() => {
+    if (categoryID) {
+      subCategoryList();
+    }
+  }, [categoryID]);
+
+  useEffect(() => {
+    if (countryID) {
+      cityList();
+    }
+  }, [countryID]);
+
+
+  useEffect(() => {
+    document.getElementById("loader").style.display = "block";
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      document.getElementById("loader").style.display = "none";
+    }, 1500);
+  }, [router?.query]);
+
 
   useEffect(() => {
     getData();
@@ -88,272 +340,345 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Skillmatics</title>
+        <title>Comprehensive HR Solution! - Empivo</title>
         <meta name="description" content="Generated by create next app" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <link href="/firebase-messaging-sw.js"></link>
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;1000&display=swap" rel="stylesheet"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;1000&display=swap" rel="stylesheet" ></link>
         <link type="module" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyfi1GcGsUisGcHoaRNxTTq2VCoEXb1h8&libraries=geometry,drawing,places&callback=initMap&v=3.47"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"></link>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+
+
+
       </Head>
 
       {/* banner-part */}
 
-      <section className="banner_part position-relative ">
-        <Slider {...homebanner} className="">
-          {banner?.length > 0 ? (
-            banner?.map((res, index) => {
-              return (
-                <div key={index} className="banner_item">
-                  <figure className="banner-fig">
-                    <img style={{ width: "100%", objectFit: "cover" }} src={res?.bannerImage || ""} className="h-100" />
-                  </figure>
-                </div>
-              );
-            })
-          ) : (
-            <div className="banner_item">
-              <figure>
-                <img src="/images/banner2.jpg" />
-              </figure>
+      <section className="banner-section">
+        <div className="container-fluid">
+          <div className="row">
+            <div
+              className="col-xm-12 col-sm-12 col-md-6 col-lg-5 col-xl-5 col-xxl-5"
+              style={{ padding: 0 }}
+            >
+              <div className="banner-left">
+                <h1>FIND YOUR DREAM JOB</h1>
+                <form className="searchform" onSubmit={findJobs}>
+                  <Image width={0} height={0} src="/images/search-icon.png" alt="" />
+                  <input
+                    type="text"
+                    placeholder="Job title, Keywords, Or Company"
+                    value={searchJobTitle}
+                    onChange={(e) => setSearchJobTitle(e.target.value)}
+                  />
+                  <div className="devider" />
+                  {/* <Image width={0} height={0} src="/images/location-icon.png" alt="" />
+                  <input
+                    type="text"
+                    placeholder="Country"
+                    value={searchLocation}
+                    onChange={(e) => setSearchLocation(e.target.value)}
+                  /> */}
+                  <button type="submit">Find jobs</button>
+                </form>
+              </div>
             </div>
-          )}
-        </Slider>
+            <div
+              className="col-xm-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 col-xxl-7"
+              style={{ padding: 0 }}
+            >
+              <div className="banner-right">
+                {/* <Image  width={0} height={0} src="img/banner-img.png" class="img-fluid" alt=""> */}
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section className="welcome-sec">
-        <Container>
-          <div className="section_head text-center" id="categories">
-            <h2 className="text-black text-xl ">
-              Welcome to <span className="text-orange">Empivo</span>
-            </h2>
+      <div className="welcome-section">
+        <div className="container">
+          <div className="row">
+            <div className="col-xm-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+              <div className="welcome-left">
+                <Image width={0} height={0}
+                  src="/images/welcome-img.png"
+                  className="img-fluid"
+                  alt="welcome-image"
+                />
+              </div>
+            </div>
+            <div className="col-xm-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+              <div className="welcome-right">
+                <h2>
+                  Welcome to <span>Empivo</span>{" "}
+                </h2>
+                <p>
+                  Your Comprehensive HR Solution! Discover the power of Empivo - the
+                  ultimate solution for transforming your HR operations with ease.
+                  Dive into a world where every aspect of workforce management is
+                  seamlessly integrated into one cohesive platform. From tracking
+                  applicants to optimizing schedules, from managing tasks to keeping
+                  precise time and attendance records, Empivo has thought of
+                  everything. Experience the convenience of centralized workforce
+                  management and unlock new levels of efficiency for your business.
+                  With Empivo, you will never have to worry about scattered systems
+                  or disjointed processes again. Join the Empivo family today and
+                  elevate your HR game to new heights.{" "}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* welcome to employe section End here  */}
+      {/* features job section start here  */}
+      <div className="feature-job" id="categories">
+        <div className="jobs-head">
+          <h2>
+            FEATURED <span>JOBS</span>
+          </h2>
+          <p>Know your worth and find the job that qualify your life</p>
+        </div>
+
+        <div className="container" >
+
+          <div className="row">
+            {jobsData?.length > 0 &&
+              jobsData.map((item, index) => (
+                <div className="col-12 col-md-6" key={index}>
+                  <div className="jobs">
+                    <div className="jobs-left">
+                      <img src={item?.CompanyLogo || users} className="img-fluid" alt="code" />
+                    </div>
+                    <div className="jobs-right">
+                      <div className="jobtitle">
+                        <p>{item?.Company?.name}</p>
+                        {/* <i className="fa-regular fa-font-awesome" /> */}
+                      </div>
+                      <div className="assts">
+                        <img src="/images/business.png" alt="business" />
+                        <span className="Segment">{item?.name}</span>
+
+                        <img src="/images/location.png" alt="location" />
+                        <span className="London">{item?.Company?.address}</span>
+
+                        <img src="/images/calendar.png" alt="calender" />
+                        <span className="hours">{item?.employmentLength} Opening</span>
+
+                        <img src="/images/additem.png" alt="skill" />
+                        <span className="dolar">{item?.Skills?.map((skill) => skill?.name).join(", ")}</span>
+                      </div>
+                      <p className="span-btn">
+                        <a href="#">
+                          <span className="fulltime">{item.jobType || "Full Time"}</span>
+                        </a>
+                        <a href="#">
+                          <span className="private">{item.industry || "Private"}</span>
+                        </a>
+                        <a href="#">
+                          <span className="urgent">{item.priority || "Urgent"}</span>
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+
+
+      </div>
+      {/* features job section End here  */}
+      <div className="how-work">
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-xm-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4" style={{ padding: 0, background: "#F05A28" }}>
+              <div className="work-left">
+                <h2>How It <span>Works?</span></h2>
+                <p>
+                  Empivo revolutionizes HR management by offering a simple, yet
+                  powerful approach to streamline your operations. Here's how it
+                  works:
+                </p>
+              </div>
+            </div>
+            <div className="col-xm-12 col-sm-12 col-md-6 col-lg-8 col-xl-8 col-xxl-8 swiper-bg">
+              <Slider
+                dots={false}
+                arrows={true}
+                infinite={true}
+                speed={500}
+                slidesToShow={2}
+                slidesToScroll={2}
+                autoplay={true}
+                autoplaySpeed={3000}
+                responsive={[
+                  {
+                    breakpoint:700,  // Below 600px
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                    }
+                  },
+                ]}
+              >
+                {[
+                  {
+                    img: "/images/Vector-mind.png",
+                    title: "Intuitive Interface",
+                    text: "Empivo's user-friendly interface makes it easy for your team to navigate and utilize its features effectively. From HR managers to employees, everyone can quickly adapt to the platform, minimizing training time and maximizing productivity."
+                  },
+                  {
+                    img: "/images/seamless.png",
+                    title: "Seamless Integration",
+                    text: "Upon joining Empivo, you'll gain access to a comprehensive platform where every aspect of HR is seamlessly integrated. No more jumping between multiple systems. Empivo consolidates all your HR processes into one intuitive interface."
+                  },
+                  {
+                    img: "/images/Group.png",
+                    title: "Customized Setup",
+                    text: "Our team works closely with yours to tailor Empivo to your specific needs. Whether you're a small startup or a large enterprise, we ensure that the platform is configured to align with your unique workflows and objectives."
+                  }
+                ].map((item, index) => (
+                  <div className="item" key={index}>
+                    <div className="img">
+                      <Image
+                        width={100}
+                        height={100}
+                        src={item.img}
+                        className="img-fluid"
+                        alt={item.title}
+                        style={{ width: 'auto', height: 'auto' }}
+                      />
+                    </div>
+                    <div className="swipe">
+                      <h4>{item.title}</h4>
+                      <p>{item.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </Slider>
+              <p className="exp-para">
+                Experience the convenience of centralized workforce management
+                with Empivo and unlock new levels of efficiency for your
+                business. Join the Empivo family today and elevate your HR game
+                to new heights.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Subscription Section */}
+      <div className="subcribtion" id="subscription">
+        <div className="sub-heading">
+          <h2>
+            SUBSCRIPTION&nbsp;<span>PLANS</span>
+          </h2>
+          <p>
+            Empivo offers flexible subscription plans tailored to meet the diverse
+            needs of businesses of all sizes. Whether you're a small startup, a
+            growing mid-sized company, or a large enterprise, we have a plan that
+            fits your requirements and budget. Choose the plan that best suits your
+            organization's needs
+          </p>
+        </div>
+        <div className="container">
+          <div className="row">
+            {subscriptionList.map((plan, i) => (
+              <div
+                className="col-xm-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4"
+                key={i}
+              >
+                <div className="sub-name-main">
+                  <div className="sub-name-1">
+                    <p>{plan.name.split(' ')[0]} <span>{plan.name.split(' ').slice(1).join(' ')}</span></p>
+                  </div>
+                </div>
+                <div className="sub-price-main">
+                  <div className="sub-price-1">
+                    <p>
+                      <span>${plan.amount}</span> Starting price /mo
+                    </p>
+                  </div>
+                </div>
+
+                <div className="subs_pkgbottom">
+                  <div className="subs_featheadp">
+                    <h5>Most popular {i > 0 ? 'features' : 'feature'}</h5>
+                    {i > 0 && (
+                      <span style={{ fontWeight: 400, fontSize: '14px' }}>
+                        Everything in {i === 1 ? 'Essentials' : 'Professional'}, plus:
+                      </span>
+                    )}
+                  </div>
+                  <ul>
+                    {plan.description.map((feature, idx) => (
+                      <li key={idx}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="sub-detail">
+
+                  <p>{plan.shortDescription || 'Everything your team needs to get started with our powerful feature suite'}</p>
+                  <Link href="/user-form"><Button>Get Started</Button></Link>
+
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="view-btn">
+            <Link href="/subscription">
+              <button>View All Subscription</button>
+            </Link>
             <p>
-              Your Comprehensive HR Solution! Discover the power of Empivo - the ultimate solution for transforming your HR operations with ease. Dive into a world where every aspect of workforce management is seamlessly integrated into one cohesive
-              platform. From tracking applicants to optimizing schedules, from managing tasks to keeping precise time and attendance records, Empivo has thought of everything. Experience the convenience of centralized workforce management and unlock
-              new levels of efficiency for your business. With Empivo, you will never have to worry about scattered systems or disjointed processes again. Join the Empivo family today and elevate your HR game to new heights.
+              Choose the plan that aligns with your organization's size, goals, and
+              budget, and unlock the full potential of Empivo's comprehensive HR
+              solution. Upgrade or downgrade your plan at any time to adapt to your
+              evolving needs. Empivo is committed to helping you succeed by
+              providing flexible, scalable, and cost-effective subscription options.
             </p>
           </div>
-        </Container>
-      </section>
+        </div>
+      </div>
 
-      {/* job-categoery */}
-
-      <section className="job-categoery">
-        <Container>
-          <div className="section_head text-center mb-3 mb-md-5" id="categories">
-            <h2 className="text-black text-xl ">
-              Jobs <span className="text-orange">Categories</span>
-            </h2>
-            <p>Explore diverse job opportunities across various industries.</p>
-          </div>
-
-          <div className="job_categoery_link">
-            <CategoryList />
-          </div>
-        </Container>
-      </section>
-
-      {/* how_it_work */}
-      {Helpers.andCondition(
-        isEmpty(user),
-        <>
-          <section className="how_it_work">
-            <Container>
-              <div className="section_head text-center mb-3 mb-md-5">
-                <h2 className="text-black text-xl ">
-                  How It <span className="text-orange">Works?</span>
-                </h2>
-                <p>Empivo revolutionizes HR management by offering a simple, yet powerful approach to streamline your operations. Here&#39;s how it works:</p>
-              </div>
-
-              <Row className="pt-2 pt-md-4 justify-content-center">
-                <Col lg={3} md={4}>
-                  <div className="how_it_work_cols text-center">
-                    <figure>
-                      <span className="process_number">01</span>
-                      <Image src="/images/Seamless Integration.png" width={84} height={84} alt=""></Image>
-                    </figure>
-                    <figcaption>
-                      <h4 className="text-dark">Seamless Integration</h4>
-                      <p className="text-sm">
-                        Upon joining Empivo, you&#39;ll gain access to a comprehensive platform where every aspect of HR is seamlessly integrated. No more jumping between multiple systems or dealing with data silos. Empivo consolidates all your HR
-                        processes into one intuitive interface.
-                      </p>
-                    </figcaption>
-                  </div>
-                </Col>
-
-                <Col lg={3} md={4} className="mb-3">
-                  <div className="how_it_work_cols text-center">
-                    <figure>
-                      <span className="process_number">02</span>
-                      <Image src="/images/Customized Setup.png" width={84} height={84} alt=""></Image>
-                    </figure>
-                    <figcaption>
-                      <h4 className="text-dark">Customized Setup</h4>
-                      <p className="text-sm">
-                        Our team works closely with yours to tailor Empivo to your specific needs. Whether you&#39;re a small startup or a large enterprise, we ensure that the platform is configured to align with your unique workflows and objectives.
-                      </p>
-                    </figcaption>
-                  </div>
-                </Col>
-
-                <Col lg={3} md={4} className="mb-3">
-                  <div className="how_it_work_cols text-center">
-                    <figure>
-                      <span className="process_number">03</span>
-                      <Image src="/images/Intuitive Interface.png" width={84} height={84} alt=""></Image>
-                    </figure>
-                    <figcaption>
-                      <h4 className="text-dark">Intuitive Interface</h4>
-                      <p className="text-sm">
-                        Empivo&#39;s user-friendly interface makes it easy for your team to navigate and utilize its features effectively. From HR managers to employees, everyone can quickly adapt to the platform, minimizing training time and
-                        maximizing productivity.
-                      </p>
-                    </figcaption>
-                  </div>
-                </Col>
-                <Col lg={3} md={4} className="mb-3">
-                  <div className="how_it_work_cols text-center">
-                    <figure>
-                      <span className="process_number">04</span>
-                      <Image src="/images/Automated Processes.png" width={84} height={84} alt=""></Image>
-                    </figure>
-                    <figcaption>
-                      <h4 className="text-dark">Automated Processes</h4>
-                      <p className="text-sm">Empivo automates repetitive tasks, saving you time and reducing the risk of errors. From onboarding new hires to processing payroll, our platform handles it all with efficiency and accuracy.</p>
-                    </figcaption>
-                  </div>
-                </Col>
-                <Col md={4} className="mb-3">
-                  <div className="how_it_work_cols text-center">
-                    <figure>
-                      <span className="process_number">05</span>
-                      <Image src="/images/Real-time Insights.png" width={84} height={84} alt=""></Image>
-                    </figure>
-                    <figcaption>
-                      <h4 className="text-dark">Real-time Insights</h4>
-                      <p className="text-sm">
-                        Gain valuable insights into your workforce with Empivo&#39;s robust reporting and analytics capabilities. Monitor key HR metrics, track trends, and make data-driven decisions to optimize your operations and drive strategic
-                        growth.
-                      </p>
-                    </figcaption>
-                  </div>
-                </Col>
-                <Col md={4} className="mb-3">
-                  <div className="how_it_work_cols text-center">
-                    <figure>
-                      <span className="process_number">06</span>
-                      <Image src="/images/Continuous Support.png" width={84} height={84} alt=""></Image>
-                    </figure>
-                    <figcaption>
-                      <h4 className="text-dark">Continuous Support</h4>
-                      <p className="text-sm">Our dedicated support team is here to assist you every step of the way. Whether you have questions about using the platform or need technical assistance, we&#39;re always just a click or call away.</p>
-                    </figcaption>
-                  </div>
-                </Col>
-                <Col md={4} className="mb-3">
-                  <div className="how_it_work_cols text-center">
-                    <figure>
-                      <span className="process_number">07</span>
-                      <Image src="/images/Scalable Solution.png" width={84} height={84} alt=""></Image>
-                    </figure>
-                    <figcaption>
-                      <h4 className="text-dark">Scalable Solution</h4>
-                      <p className="text-sm">As your business grows, Empivo grows with you. Our platform is designed to scale seamlessly, accommodating your evolving needs and expanding workforce without compromising performance or functionality.</p>
-                    </figcaption>
-                  </div>
-                </Col>
-                <p className="text-center mt-4`">
-                  Experience the convenience of centralized workforce management with Empivo and unlock new levels of efficiency for your business. Join the Empivo family today and elevate your HR game to new heights.
-                </p>
-              </Row>
-            </Container>
-          </section>
-          <section className="subscription">
-            <Container>
-              <div className="section_head text-center mb-3 mb-md-5" id="subscription">
-                <h2 className="text-black text-xl ">
-                  Subscription <span className="text-orange">Plans</span>
-                </h2>
-                <p>
-                  Empivo offers flexible subscription plans tailored to meet the diverse needs of businesses of all sizes. Whether you&#39;re a small startup, a growing mid-sized company, or a large enterprise, we have a plan that fits your
-                  requirements and budget. Choose the plan that best suits your organization&#39;s needs:
-                </p>
-              </div>
-              <SubscriptionList />
-              <div className="section_head text-center mb-3 mt-4 mb-md-5">
-                <p>
-                  Choose the plan that aligns with your organization&#39;s size, goals, and budget, and unlock the full potential of Empivo&#39;s comprehensive HR solution. Upgrade or downgrade your plan at any time to adapt to your evolving needs.
-                  Empivo is committed to helping you succeed by providing flexible, scalable, and cost-effective subscription options.
-                </p>
-              </div>
-            </Container>
-          </section>
-
-          {/* everythink_need */}
-          <section className="everythink_need">
-            <Container>
-              <Row className="align-items-center">
-                <Col lg={8} md={7}>
-                  <figure className="mb-0">
-                    <Image src="/images/dashboard12.png" width="819" height="547" alt="" />
-                  </figure>
-                </Col>
-                <Col lg={4} md={5}>
-                  <article className="section_head">
-                    <h2 className="text-black text-xl ">
-                      Empivo is an effortless onboarding
-                      <span className="text-orange d-inline d-lg-block ps-1">software platform</span>
-                    </h2>
-                    <p className="mt-3">
-                      Empivo is more than just a software platform; it&#39;s your partner in transforming HR operations with unparalleled ease and efficiency. Say goodbye to the days of juggling multiple systems and disjointed processes. With Empivo,
-                      you&#39;ll experience a seamless integration of every aspect of workforce management, all within one cohesive platform.
-                    </p>
-                  </article>
-                  <button onClick={() => router.push("/empivo-feature")} className="theme_lg_btn text-decoration-none subscription-btn d-inline-block">
-                    Product feature page
-                  </button>
-                </Col>
-              </Row>
-            </Container>
-          </section>
-        </>
-      )}
-      {Helpers.ternaryCondition(
-        !isEmpty(user) && taskNotification?.isRead == false && show,
-        <Modal show={!open} onHide={handleClose} centered className="agent-modal">
-          <Modal.Header className="d-flex justify-content-center" closeButton>
-            <div className="d-flex justify-content-between w-100 me-4 align-items-center">
-              <div className="d-flex flex-column">
-                <span className="modal-title h4 mb-1">Task Update </span>
+      {/* Software Platform Section */}
+      <div className="software">
+        <div className="software-head">
+          <h3>EMPIVO IS AN EFFORTLESS ONBOARDING</h3>
+          <h2>SOFTWARE PLATFORM</h2>
+        </div>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-xm-12 col-sm-12 col-md-6 col-lg-7 col-xl-7 col-xxl-7 p-0">
+              <div className="software-left">
+                <Image width={0} height={0}
+                  src="/images/laptop.png"
+                  className="img-fluid"
+                  alt="Laptop"
+                />
               </div>
             </div>
-          </Modal.Header>
-
-          <Modal.Body>
-            <div className="job_listing_main">
-              <div className="jobs_list border-0">
-                <div className="detail_body">
-                  <Row>
-                    <div className="">
-                      <div className="relative z-0  w-full group mb-4">
-                        <span className="assign_new_task">{taskNotification?.description}</span>
-                      </div>
-                    </div>
-                    <div className="d-flex align-items-center justify-content-center">
-                      <Button type="submit" className="py-1 px-4  theme_blue_btn rounded_5" onClick={() => router.push("/assign-task-request")}>
-                        Go to assign task <GoArrowRight />
-                      </Button>
-                    </div>
-                  </Row>
+            <div className="col-xm-12 col-sm-12 col-md-6 col-lg-5 col-xl-5 col-xxl-5">
+              <div className="software-right">
+                <p>
+                  Empivo is more than just a software platform; it's your partner in
+                  transforming HR operations with unparalleled ease and efficiency.
+                  Say goodbye to the days of juggling multiple systems and disjointed
+                  processes. With Empivo, you'll experience a seamless integration of
+                  every aspect of workforce management, all within one cohesive
+                  platform.
+                </p>
+                <div className="nextpagebutton">
+                  <Link href="/empivo-feature">Product feature page</Link>
                 </div>
               </div>
             </div>
-          </Modal.Body>
-        </Modal>,
-        ""
-      )}
+          </div>
+        </div>
+      </div>
     </>
   );
 }
