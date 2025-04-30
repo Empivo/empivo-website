@@ -232,7 +232,7 @@ const Subscription = () => {
               </Col>
               <Col md={4}>
                 <div className="cta1right">
-                  <Link href="/contact">get in touch</Link>
+                  <Link href="/contact-us">get in touch</Link>
                 </div>
               </Col>
             </Row>

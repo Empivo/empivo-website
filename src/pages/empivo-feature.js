@@ -294,7 +294,7 @@ const EmpivoFeature = () => {
             </Col>
             <Col md={4}>
               <div className="cta1right">
-                <a href="#">get in touch</a>
+              <Link href="/contact-us">get in touch</Link>
               </div>
             </Col>
           </Row>

@@ -1,24 +1,29 @@
-
 @media screen and (max-width: 1399px) {
 
 
     .nav-link {
-       padding: 10px !important;
-      }
+        padding: 10px !important;
+    }
 
     .auth_section_row .row .col-md-6 {
         padding: 0 15px;
     }
 
     .accept-reject-sec button {
-        padding: 6px 5px!important;
+        padding: 6px 5px !important;
         font-size: 15px;
     }
-    .brand_outer, .header_right {
+
+    .brand_outer,
+    .header_right {
         flex: 0 0 324px;
-        max-width:324px;
+        max-width: 324px;
     }
-    .header_right a{ padding:10px 12px; margin:0;}
+
+    .header_right a {
+        padding: 10px 12px;
+        margin: 0;
+    }
 
     .auth_section_row .row {
         margin: 0 -15px;
@@ -53,44 +58,57 @@
     }
 
 
-/* form fix in multiple device */
+    /* form fix in multiple device */
 
-.text_wrap_row.border{padding:15px!important;}
+    .text_wrap_row.border {
+        padding: 15px !important;
+    }
 
-.text_wrap_row {
-    font-size: 13px;
-}
+    .text_wrap_row {
+        font-size: 13px;
+    }
 
-.form_group label {
-    font-size: 14px!important;
-}
+    .form_group label {
+        font-size: 14px !important;
+    }
 
-.form_input {
-    font-size: 12px;
-    padding: 5px 10px;
-}
+    .form_input {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
 
-.employee_survey_form_wrap .form-control{font-size:13px;}
-.employee_survey_form_wrap .form-control+div.text-danger{font-size:13px;}
+    .employee_survey_form_wrap .form-control {
+        font-size: 13px;
+    }
 
-.text_wrap_row strong.text-lg {
-    font-size: 16px!important;
-}
-.employee_application_form input[type="checkbox"] {
-    vertical-align: middle;
-}
-.text_wrap_row strong{font-size:16px!important;}
+    .employee_survey_form_wrap .form-control+div.text-danger {
+        font-size: 13px;
+    }
 
-.text_wrap_row.d-flex,.text-cols.d-flex {
-    flex-wrap: wrap;
-}
+    .text_wrap_row strong.text-lg {
+        font-size: 16px !important;
+    }
 
-.text_wrap_row strong.me-5,.text_wrap_row label.me-5 {
-    margin-right: 18px!important;
-}
+    .employee_application_form input[type="checkbox"] {
+        vertical-align: middle;
+    }
+
+    .text_wrap_row strong {
+        font-size: 16px !important;
+    }
+
+    .text_wrap_row.d-flex,
+    .text-cols.d-flex {
+        flex-wrap: wrap;
+    }
+
+    .text_wrap_row strong.me-5,
+    .text_wrap_row label.me-5 {
+        margin-right: 18px !important;
+    }
 
 
-/* form fix in multiple device */
+    /* form fix in multiple device */
 
 
 
@@ -202,9 +220,12 @@
         right: 5px;
     }
 
-    .brand_outer, .header_right {
-        flex: 0 0 164px; max-width:164px;
+    .brand_outer,
+    .header_right {
+        flex: 0 0 164px;
+        max-width: 164px;
     }
+
     .job_applide_row figcaption ul li {
         flex: 0 0 33.333%;
         max-width: 33.333%;
@@ -242,7 +263,8 @@
         padding: 10px 8px;
         font-size: 15px;
     }
-   .header_right {
+
+    .header_right {
         flex: 0 0 280px;
         max-width: 280px;
     }
@@ -253,26 +275,34 @@
     }
 
     .all_package .mx-md-2 {
-        margin: 0!important;
+        margin: 0 !important;
     }
 
 
 
-.employeeWithHolding table {
-    min-width: 640px;
-}
+    .employeeWithHolding table {
+        min-width: 640px;
+    }
 
 
-.d-flex,.form_group{flex-wrap:wrap;}
+    .d-flex,
+    .form_group {
+        flex-wrap: wrap;
+    }
 
-.signature_pic .upload-img {
-    width: 44px;
-    height: 44px!important;
-}
+    .signature_pic .upload-img {
+        width: 44px;
+        height: 44px !important;
+    }
 
-.sign_row .pe-5{padding-right:0!important;}
+    .sign_row .pe-5 {
+        padding-right: 0 !important;
+    }
 
-.text_wrap_row.my-3 > .my-3{margin-top:0!important; margin-bottom:0!important;}
+    .text_wrap_row.my-3>.my-3 {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
 
 }
 
@@ -281,40 +311,48 @@
     .text-xl {
         font-size: 28px;
     }
+
     .emp-task-select-datepicker .relative {
         flex-direction: column;
         width: 100%;
     }
-.emp-task-select-datepicker .position-relative{
-    width: 100%;
-    padding-right: 10px;
-}
-.emp-task-select-datepicker .position-relative input.flat-picker-date{
-    width: 100%;
-}
+
+    .emp-task-select-datepicker .position-relative {
+        width: 100%;
+        padding-right: 10px;
+    }
+
+    .emp-task-select-datepicker .position-relative input.flat-picker-date {
+        width: 100%;
+    }
 
     .emp-task-select-datepicker .relative label {
         width: 100%;
         margin-bottom: 9px;
     }
-    .emp-task-sec .top-bred-sec{
+
+    .emp-task-sec .top-bred-sec {
         flex-direction: column;
         align-items: start;
     }
-    .emp-task-sec .top-bred-sec button{
+
+    .emp-task-sec .top-bred-sec button {
         margin-top: 15px;
     }
+
     .view-job-icon {
         position: absolute;
         right: 15px;
         top: 19px;
     }
+
     .job_applied_datepicker .whitespace-nowrap {
-        padding-right: 0px!important;
+        padding-right: 0px !important;
     }
+
     .emp-task-filter-btn {
         display: flex;
-        padding-right: 0px!important;
+        padding-right: 0px !important;
     }
 
     .emp-task-filter-btn button {
@@ -449,6 +487,7 @@
         -webkit-transition: all .3s;
         transform: translateX(-110%);
     }
+
     .remover-sidebar .profile_sidebar {
         transform: translate(0);
     }
@@ -523,7 +562,7 @@
         border-right: none;
     }
 
-/*
+    /*
     .employee_survey_form_wrap,.my-account-form {
         overflow-x: auto;
         padding: 24px 0;
@@ -539,90 +578,124 @@
         padding: 14px;
     }
 
-        .employee_survey_form_wrap {
-            padding: 36px 0!important;
-        }
+    .employee_survey_form_wrap {
+        padding: 36px 0 !important;
+    }
 
-        .blog-detail-card .card-body {
-            padding: 0;
-        }
-        .employee_application_form h2 {
-            font-size: 22px;
-        }
+    .blog-detail-card .card-body {
+        padding: 0;
+    }
 
-        .text_wrap_row strong {
-            font-size: 18px!important;
-        }
+    .employee_application_form h2 {
+        font-size: 22px;
+    }
 
-        .text_wrap_row {
-            padding: 10px 0;
-        }
+    .text_wrap_row strong {
+        font-size: 18px !important;
+    }
 
-        .form_input {
-            font-size: 14px;
-        }
+    .text_wrap_row {
+        padding: 10px 0;
+    }
 
-        .form_group label {
-            font-size: 14px;
-        }
+    .form_input {
+        font-size: 14px;
+    }
 
-        .banner-fig {
-            height: 300px;
-        }
-        .mobile_align_fix .whitespace-nowrap {
-            /* width: 50px; */
-            text-align: left;
-            padding-right: 10px;
-          }
+    .form_group label {
+        font-size: 14px;
+    }
+
+    .banner-fig {
+        height: 300px;
+    }
+
+    .mobile_align_fix .whitespace-nowrap {
+        /* width: 50px; */
+        text-align: left;
+        padding-right: 10px;
+    }
 
 
-          .dashboard_left_wrap{border-right:none; padding-right:0;}
+    .dashboard_left_wrap {
+        border-right: none;
+        padding-right: 0;
+    }
 
-          .dayes_wrap .card_pic {
-            height:44px;
-            width:44px;
-            flex:0 0 44px;
-          }
+    .dayes_wrap .card_pic {
+        height: 44px;
+        width: 44px;
+        flex: 0 0 44px;
+    }
 
-          .nav-link {
-            /* font-size: 18px; */
-            border-bottom: 1px solid #ddd;
-            text-align: center;
-        }
+    .nav-link {
+        /* font-size: 18px; */
+        border-bottom: 1px solid #ddd;
+        text-align: center;
+    }
 
-        .nav-link.active {
-            border-color: var(--bs-orange);
-        }
+    .nav-link.active {
+        border-color: var(--bs-orange);
+    }
 
-        .header .nav-link:last-child {
-            border: none;
-        }
+    .header .nav-link:last-child {
+        border: none;
+    }
 
     .navbar-toggler:not(.navbar-toggler.collapsed) .navbar-toggler-icon {
-        background: url(../images/close_icon.svg);
+        /* background: url(../images/close_icon.svg); */
         background-repeat: no-repeat;
         background-position: center;
         background-size: 20px;
     }
+
     .navbar-toggler {
         border: none;
         padding: 5px;
         flex: 0 0 40px;
         max-width: 40px;
+        background-color: #fff;
     }
+
+    header {
+        padding: 10px 0;
+    }
+
+    header .btn-header span {
+        padding: 10px 10px 10px 10px;
+    }
+
+    .job-log-out,
+    .job-login {
+        font-size: 14px;
+    }
+
+    div#navbarSupportedContent {
+        margin: 0 15px;
+        box-shadow: 0 0 16px #00000024;
+    }
+    .btn-header {
+        margin-top: 20px;
+        text-align: center;
+    }
+    
     .brand_outer,
     .header_right {
         flex: 1;
     }
 
 
-    .form_pagger .btn,.my-account-form .btn.theme_md_btn {
+    .form_pagger .btn,
+    .my-account-form .btn.theme_md_btn {
         font-size: 14px;
         padding: 8px 20px;
         font-weight: 500;
     }
 
-    .form_pagger .btn:disabled{background-color:var(--bs-orange); opacity:0.5;}
+    .form_pagger .btn:disabled {
+        background-color: var(--bs-orange);
+        opacity: 0.5;
+    }
 
 
     .form_pagger {
@@ -638,9 +711,14 @@
     .form_pagger span {
         font-size: 13px;
     }
-    .requestForText .text-xl{font-size:24px!important;}
 
-    .Employee_certificate{display:block!important;}
+    .requestForText .text-xl {
+        font-size: 24px !important;
+    }
+
+    .Employee_certificate {
+        display: block !important;
+    }
 
 
     .requestForText .form_group label {
@@ -657,12 +735,13 @@
     .empc_center_title strong {
         text-align: left;
     }
-    .SocialSecurityNumber > div {
+
+    .SocialSecurityNumber>div {
         flex-wrap: wrap;
         gap: 5px;
     }
 
-    .SocialSecurityNumber > div > div {
+    .SocialSecurityNumber>div>div {
         width: 40px;
         height: 40px;
     }
@@ -670,74 +749,93 @@
 
 
     .Emergency_Contact .form_input {
-        width: 100%!important;
+        width: 100% !important;
     }
 
 
     .Emergency_Contact .form_group {
-        width: 100%!important;
+        width: 100% !important;
     }
 
     .Emergency_Contact .d-flex {
         flex-wrap: wrap;
     }
 
-    .sign_row.pe-5{padding-right:20px!important;}
+    .sign_row.pe-5 {
+        padding-right: 20px !important;
+    }
 
-    .form_group.w-50{width:auto!important;}
-
-
-    ol li, ul li{font-size:14px;}
-
-        /* sidebar toggle */
-
-
-        .profile_sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-            flex: 0 0 auto;
-            width: 298px;
-            z-index: 999;
-            border-radius: 0;
-            transition: all .3s;
-            -webkit-transition: all .3s;
-            transform: translate(-110%);
-            max-width: 289px;
-        }
-        .account_content_right {
-            max-width: 100%;
-            margin-left: 0;
-            position: relative;
-        }
-        .my-account-form{background-color: #fff; border:1px solid #ddd; border-radius:10px; padding: 16px!important; box-shadow:0 0 10px rgba(0,0,0,.1); margin-top:15px;}
-        .my-account-form .text_wrap_row strong, .my-account-form .text_wrap_row label {
-            font-size: 14px !important;
-        }
-        .open_sidebar_mobile {
-            position: absolute;
-            top: 0px;
-            right: 0;
-            background: transparent;
-            border: navajowhite;
-            font-size: 26px;
-            color: #333;
-            border-radius: 0 5px 5px 0;
-            display: block;
-        }
-
-        .remover-sidebar .profile_sidebar {
-            transform: translate(0);
-        }
-
-        /* sidebar toggle */
+    .form_group.w-50 {
+        width: auto !important;
+    }
 
 
+    ol li,
+    ul li {
+        font-size: 14px;
+    }
+
+    /* sidebar toggle */
 
 
-        }
+    .profile_sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        flex: 0 0 auto;
+        width: 298px;
+        z-index: 999;
+        border-radius: 0;
+        transition: all .3s;
+        -webkit-transition: all .3s;
+        transform: translate(-110%);
+        max-width: 289px;
+    }
+
+    .account_content_right {
+        max-width: 100%;
+        margin-left: 0;
+        position: relative;
+    }
+
+    .my-account-form {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 16px !important;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        margin-top: 15px;
+    }
+
+    .my-account-form .text_wrap_row strong,
+    .my-account-form .text_wrap_row label {
+        font-size: 14px !important;
+    }
+
+    .open_sidebar_mobile {
+        position: absolute;
+        top: 0px;
+        right: 0;
+        background: transparent;
+        border: navajowhite;
+        font-size: 26px;
+        color: #333;
+        border-radius: 0 5px 5px 0;
+        display: block;
+    }
+
+    .remover-sidebar .profile_sidebar {
+        transform: translate(0);
+    }
+
+    /* sidebar toggle */
+
+
+
+
+}
 
 
 
@@ -746,10 +844,12 @@
         flex-direction: row;
         width: 100%;
     }
-    .emp-task-select-datepicker .position-relative{
+
+    .emp-task-select-datepicker .position-relative {
         padding-right: 0px;
     }
-    .emp-task-select-datepicker .relative label{
+
+    .emp-task-select-datepicker .relative label {
         width: auto;
         margin-bottom: 0px;
     }
@@ -757,6 +857,7 @@
     .emp-task-select-datepicker .relative {
         width: 100%;
     }
+
     .assign-task-datepicker .relative .position-relative {
         width: 100%;
     }
@@ -767,7 +868,7 @@
     }
 
 
-    .assign-task-datepicker{
+    .assign-task-datepicker {
         width: 100%;
         flex-direction: column;
     }
@@ -776,9 +877,22 @@
         box-shadow: none;
     }
 
+    .footer img.img-fluid {
+        height: 40px;
+    }
 
+    a.subs_started {
+        position: inherit;
+        margin-top: 50px;
+    }
 
+    .subs_pkgtop {
+        min-height: auto !important;
+    }
 
+    .aboutpart {
+        padding: 10px 0px;
+    }
 
 
 
@@ -954,7 +1068,10 @@
     .company_lg_logo {
         margin-bottom: 28px;
     }
-    .header_content_left ul li{font-size:14px;}
+
+    .header_content_left ul li {
+        font-size: 14px;
+    }
 
 
     .banner-fig {
@@ -965,12 +1082,14 @@
 
     .emp-task-sec .top-bred-sec {
         flex-direction: column;
-        justify-content: start!important;
+        justify-content: start !important;
         align-items: self-start;
     }
+
     .top-bred-sec nav {
         margin-bottom: 8px;
     }
+
     .everythink_need {
         text-align: center;
     }
@@ -979,39 +1098,66 @@
     /* form small device */
 
 
-    .my-account-form table tbody{display:initial;}
-    .my-account-form table thead, .my-account-form tbody tr{table-layout:initial;}
-    .my-account-form table td .form-control{min-width:120px;}
+    .my-account-form table tbody {
+        display: initial;
+    }
+
+    .my-account-form table thead,
+    .my-account-form tbody tr {
+        table-layout: initial;
+    }
+
+    .my-account-form table td .form-control {
+        min-width: 120px;
+    }
 
 
     .mediumDeviceFull>.mb-3 .form_input {
-        width: 100%!important;
+        width: 100% !important;
     }
 
-    input.smallFiweld{width:100px!important;}
-    .employee_survey_form_wrap h4{font-size:16px!important;}
+    input.smallFiweld {
+        width: 100px !important;
+    }
 
-    .employee_survey_form_wrap{padding:24px 0!important;}
-    .employee_survey_form_wrap h2{font-size:20px!important;}
+    .employee_survey_form_wrap h4 {
+        font-size: 16px !important;
+    }
 
-    .employee_application_form .form_input, .employee_application_form label,.employee_application_form .form-control, .employee_application_form .form_input+.text-danger {
+    .employee_survey_form_wrap {
+        padding: 24px 0 !important;
+    }
+
+    .employee_survey_form_wrap h2 {
+        font-size: 20px !important;
+    }
+
+    .employee_application_form .form_input,
+    .employee_application_form label,
+    .employee_application_form .form-control,
+    .employee_application_form .form_input+.text-danger {
         font-size: 13px;
     }
 
-    div.employee_application_form_wrap strong.text-lg,.employee_application_form .page_title .text-lg {
-        font-size: 1rem!important;
-        margin:0 10px!important;
+    div.employee_application_form_wrap strong.text-lg,
+    .employee_application_form .page_title .text-lg {
+        font-size: 1rem !important;
+        margin: 0 10px !important;
     }
 
-    .employee_application_form .form_input, .employee_application_form label,.employee_application_form .form_input+.text-danger {
+    .employee_application_form .form_input,
+    .employee_application_form label,
+    .employee_application_form .form_input+.text-danger {
         font-size: 13px;
     }
 
     .telework label {
-        max-width: 100%!important;
+        max-width: 100% !important;
         margin-bottom: 10px;
     }
-    .Emergency_Contact .form_group  .position-relative,.Emergency_Contact .position-relative {
+
+    .Emergency_Contact .form_group .position-relative,
+    .Emergency_Contact .position-relative {
         flex: 1;
     }
 
@@ -1033,9 +1179,9 @@
         transform: translate(0);
         width: 94px;
         height: 94px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin-bottom: 20px;
     }
 
@@ -1053,11 +1199,12 @@
     }
 
     .text_wrap_row strong {
-        font-size: 16px!important;
+        font-size: 16px !important;
     }
-.contact-us-page .theme-form-group {
-    margin-bottom: 4px;
-}
+
+    .contact-us-page .theme-form-group {
+        margin-bottom: 4px;
+    }
 
     .emp-task-select-datepicker .relative label {
         width: 69px;
@@ -1068,32 +1215,37 @@
     }
 
     .emp-task-select-datepicker {
-        flex-direction: column!important;
+        flex-direction: column !important;
     }
 
     .assign-task-datepicker .relative {
-        flex: 1!important;
+        flex: 1 !important;
     }
 
 
 
 
-    .blog-detail-card  .card-body {
-        padding: 0!important;
+    .blog-detail-card .card-body {
+        padding: 0 !important;
     }
 
     .navbar-toggler:not(.navbar-toggler.collapsed) .navbar-toggler-icon {
-    background-size: 16px;
-}
-.navbar-toggler-icon {
-    background-size: 24px;
-}
-    .header_content_left ul li+li{display:none;}
+        background-size: 24px;
+    }
+
+    .navbar-toggler-icon {
+        background-size: 24px;
+    }
+
+    .header_content_left ul li+li {
+        display: none;
+    }
 
     .auth_body:before,
     .auth_body:after {
         display: none;
     }
+
     .banner-fig {
         height: 300px;
     }
@@ -1149,7 +1301,7 @@
 
     .plan_grid {
         max-width: 380px;
-        margin: auto!important;
+        margin: auto !important;
     }
 
     .subscription .slick-slider {
@@ -1352,20 +1504,31 @@
     }
 
     .form_group div.text-danger {
-        font-size: 12px!important;
+        font-size: 12px !important;
     }
 
 
 
 
     /* form css */
-    .my-account-form tr th,.my-account-form tr td{font-size:12px;}
-    .my-account-form tr td .as_link svg{width:16px;}
-    .my-account-form tr th:last-child, .my-account-form tr td:last-child{white-space:nowrap; width:110px;}
+    .my-account-form tr th,
+    .my-account-form tr td {
+        font-size: 12px;
+    }
+
+    .my-account-form tr td .as_link svg {
+        width: 16px;
+    }
+
+    .my-account-form tr th:last-child,
+    .my-account-form tr td:last-child {
+        white-space: nowrap;
+        width: 110px;
+    }
 
 
 
-    .terminationNotice  .d-flex {
+    .terminationNotice .d-flex {
         width: 100%;
     }
 
@@ -1379,7 +1542,7 @@
 
     .terminationNotice .position-relative {
         width: 100%;
-        margin: 0!important;
+        margin: 0 !important;
     }
 
 
@@ -1391,24 +1554,36 @@
 }
 
 @media screen and (max-width: 479px) {
-    .account_content_right{padding:0;}
+    .account_content_right {
+        padding: 0;
+    }
 
     .filter_action .withdraw-focus {
         margin-bottom: 10px;
     }
-    .job_applied_datepicker > .d-flex {
+
+    .job_applied_datepicker>.d-flex {
         flex-direction: column;
         width: 100%;
     }
+
     .job_filter.job_applied_datepicker .relative {
         flex: 1;
         max-width: 100%;
     }
 
-    .punch_area{flex-direction:column;}
-    .break_time_point{margin-top:20px;}
+    .punch_area {
+        flex-direction: column;
+    }
 
-    .punch_time{padding-right:0; padding-bottom:20px;}
+    .break_time_point {
+        margin-top: 20px;
+    }
+
+    .punch_time {
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
 
 
 
@@ -1428,6 +1603,7 @@
     .job_filter input.flat-picker-date {
         width: 100%;
     }
+
     .banner_caption h1 small {
         font-size: 14px;
     }
@@ -1499,7 +1675,8 @@
     }
 
     .navbar-brand img {
-        max-height: 22px;
+        margin-top: 10px;
+        max-height: 35px;
     }
 
     .job-categoery,
@@ -1552,80 +1729,113 @@
 
 
 
-/* form responsive */
+    /* form responsive */
 
 
-.form_input {
-    width: 100%!important;
+    .form_input {
+        width: 100% !important;
+    }
+
+    .form_group.d-flex .position-relative {
+        flex: 1;
+        max-width: 100%;
+    }
+
+    .form_group.d-flex {
+        width: 100%;
+        margin: 6px 0;
+    }
+
+    .my-account-form .text_wrap_row label {
+        flex: 0 0 auto;
+        max-width: 50%;
+        white-space: pre-wrap;
+        font-size: 13px !important;
+    }
+
+    .my-account-form .text_wrap_row label.fullLabel {
+        max-width: 100%;
+    }
+
+    .text_wrap_row:not(.text_wrap_row.bg-light, .text_wrap_row.border) {
+        padding: 0 0 15px 0 !important;
+        gap: 5px;
+    }
+
+
+    .form_group.ps-3,
+    .form_group.ps-4,
+    .form_group.ps-5,
+    .form_group.pe-5,
+    .form_group.pe-4,
+    .form_group.pe-3 {
+        padding-left: 0 !important;
+    }
+
+    .text-cols.d-flex {
+        gap: 12px 5px;
+    }
+
+    .employee_application_form h2 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .form_group.w-50 {
+        width: 100% !important;
+        ;
+    }
+
+    .my-account-form .text_wrap_row .radio_list label {
+        text-align: center;
+    }
+
+    .amountField .amount {
+        width: 100% !important;
+        padding: 0 0 10px 0 !important;
+    }
+
+    .amountField .amount .form_input {
+        width: 100%;
+    }
+
+    .accont_detail .text_wrap_row label {
+        max-width: 100%;
+    }
+
+    .accont_detail .text_wrap_row>div {
+        margin-bottom: 5px;
+    }
+
+    .fullRadioLabel .form-check-label {
+        max-width: 100% !important;
+    }
+
+    .AndCenterPosition {
+        flex: 0 0 100%;
+        padding: 10px 0 !important;
+    }
+
+    .text-xl,
+    .employeeWithHolding .text-xl {
+        font-size: 1.5rem !important;
+    }
+
+    .text-lg,
+    .employeeWithHolding .text-lg {
+        font-size: 1.2rem !important;
+    }
+
+    /* form responsive */
+
+
+
+
+
 }
 
-.form_group.d-flex .position-relative {
-    flex: 1;
-    max-width: 100%;
-}
-
-.form_group.d-flex {
-    width: 100%;
-    margin: 6px 0;
-}
-
-.my-account-form .text_wrap_row label {
-    flex: 0 0 auto;
-    max-width: 50%;
-    white-space: pre-wrap;
-    font-size: 13px!important;
-}
-
-.my-account-form .text_wrap_row  label.fullLabel{max-width: 100%;}
-
-.text_wrap_row:not(.text_wrap_row.bg-light,.text_wrap_row.border ){padding:0 0 15px 0!important; gap:5px;}
-
-
-.form_group.ps-3,.form_group.ps-4,.form_group.ps-5,.form_group.pe-5,.form_group.pe-4,.form_group.pe-3 {
-    padding-left: 0!important;
-}
-
-.text-cols.d-flex {
-    gap: 12px 5px;
-}
-
-.employee_application_form h2{font-size:18px; font-weight:bold; margin-bottom:10px;}
-.form_group.w-50{width: 100%!important;;}
-.my-account-form .text_wrap_row .radio_list label {
-    text-align: center;
-}
-.amountField .amount {
-    width: 100%!important;
-    padding: 0 0 10px 0!important;
-}
-.amountField .amount .form_input {width:100%;}
-
-.accont_detail .text_wrap_row label {
-    max-width: 100%;
-}
-
-.accont_detail .text_wrap_row > div {
-    margin-bottom: 5px;
-}
-.fullRadioLabel .form-check-label {
-    max-width: 100%!important;
-}
-.AndCenterPosition {
-    flex: 0 0 100%;
-    padding: 10px 0!important;
-}
-.text-xl,.employeeWithHolding .text-xl{font-size:1.5rem!important;}
-.text-lg ,.employeeWithHolding .text-lg{font-size:1.2rem!important;}
-/* form responsive */
-
-
-
-
-
-}
-
-@media screen and (max-width:400px)
-{
+@media screen and (max-width:400px) {
     .tag-collaborate-sec {
         flex-direction: column;
     }
@@ -1640,6 +1850,7 @@
     .navbar-brand img {
         max-height: 20px;
     }
+
     .accept-reject-sec {
         flex-direction: column;
     }
@@ -1648,6 +1859,7 @@
         margin-bottom: 10px;
         width: 100%;
     }
+
     .banner-fig {
         height: 150px;
     }

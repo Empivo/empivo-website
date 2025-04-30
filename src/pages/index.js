@@ -164,17 +164,17 @@ export default function Home() {
   const findJobs = (e) => {
     e.preventDefault();
 
-    const lowerCaseJobTitle = searchJobTitle.toLowerCase().replace(/\s+/g, '-');
-    const lowerCaseLocation = searchLocation.toLowerCase();
+      const lowerCaseJobTitle = searchJobTitle.toLowerCase().replace(/\s+/g, '-');
+      const lowerCaseLocation = searchLocation.toLowerCase();
 
-    router.push({
-      pathname: `/job-seeker`,
-      query: {
-        search: searchJobTitle,  // Add this line to pass the search term
-        category: "",
-        country: ""
-      },
-    });
+      router.push({
+        pathname: `/job-seeker`,
+        query: {
+          search: searchJobTitle,  // Add this line to pass the search term
+          category: "",
+          country: ""
+        },
+      });
 
   }
 
@@ -485,8 +485,8 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              ))}
-          </div>
+                    ))}
+              </div>
         </div>
 
 
@@ -506,7 +506,7 @@ export default function Home() {
               </div>
             </div>
             <div className="col-xm-12 col-sm-12 col-md-6 col-lg-8 col-xl-8 col-xxl-8 swiper-bg">
-              <Slider
+            <Slider
                 dots={false}
                 arrows={true}
                 infinite={true}
@@ -622,10 +622,10 @@ export default function Home() {
                 </div>
                 <div className="sub-detail">
 
-                  <p>{plan.shortDescription || 'Everything your team needs to get started with our powerful feature suite'}</p>
-                  <Link href="/user-form"><Button>Get Started</Button></Link>
+<p>{plan.shortDescription || 'Everything your team needs to get started with our powerful feature suite'}</p>
+<Link href="/user-form"><Button>Get Started</Button></Link>
 
-                </div>
+</div>
               </div>
             ))}
           </div>

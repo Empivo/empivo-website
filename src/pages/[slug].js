@@ -42,26 +42,23 @@ const Slug = ({ data }) => {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
+        <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap" rel="stylesheet"></link>
       </Head>
 
       <section>
         <Container>
           <Card className="border-0 blog-detail-card">
             <Card.Body className="pb-sm-4">
-              <h2 className="mb-3 mb-lg-4">{content?.title}</h2>
+              {/* <h2 className="mb-3 mb-lg-4">{content?.title}</h2> */}
               <div dangerouslySetInnerHTML={{ __html: content?.description }}></div>
             </Card.Body>
           </Card>
         </Container>
 
         {/* Add Owl Carousel section */}
-        <div id="Journey-part" className="owl-carousel">
-          {/* Example static items — replace or loop through actual content */}
-          <div className="item"><h4>1</h4></div>
-          <div className="item"><h4>2</h4></div>
-          <div className="item"><h4>3</h4></div>
-          <div className="item"><h4>4</h4></div>
-        </div>
+     
       </section>
     </div>
   );
