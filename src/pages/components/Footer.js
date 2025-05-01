@@ -121,7 +121,7 @@ function Footer() {
           <div className="col-xm-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3">
             <div className="footer-right">
               <p>
-                PHONE <span>+55 74556111123</span>
+                PHONE <span>1-888-533-0059</span>
               </p>
               <p>
                 EMAIL <span>support@empivo.com</span>

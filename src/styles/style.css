@@ -157,9 +157,7 @@ button {
 }
 
 .slick-prev:before,
-.slick-next:before {
- 
-}
+.slick-next:before {}
 
 .slick-prev img,
 .slick-next img {
@@ -601,9 +599,8 @@ button {
 .theme-form-group .form-control,
 .theme-form-group .form-select {
   border: none;
-  border-bottom: 1px solid #bebebe !important;
-  border-radius: 0;
-  padding: 15px 0;
+  border-radius: 10px;
+  padding: 15px;
   height: calc(3.4rem + 2px);
 }
 
@@ -753,7 +750,7 @@ input:-webkit-autofill:active {
 .auth_body:before {
   content: '';
   background-image: url(../images/login_left.png);
-  position: absolute;
+
   width: 50%;
   bottom: 0;
   top: 0;
@@ -764,7 +761,7 @@ input:-webkit-autofill:active {
 .auth_body:after {
   content: '';
   background-image: url(../images/login_right.png);
-  position: absolute;
+
   width: 50%;
   bottom: 0;
   top: 0;
@@ -777,7 +774,7 @@ input:-webkit-autofill:active {
 
 .auth_section {
   position: relative;
-  z-index: 2;
+  z-index: 0;
 }
 
 .auth_section_row .row .col-md-6 {
@@ -1839,7 +1836,7 @@ input:-webkit-autofill:active {
 }
 
 .main_wrap {
-  background: #fff; 
+  background: #fff;
   padding: 30px 0 60px;
 }
 
@@ -3335,6 +3332,7 @@ header .btn-header span {
   border: 1px solid #ddd;
   border-radius: 10px;
   margin-bottom: 27px;
+  min-height: 180px;
 
 }
 
@@ -3872,12 +3870,15 @@ span.urgent {
 }
 
 .custum1 {
-  padding-top: 0px !important; padding-bottom: 0px !important;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
 
 }
+
 a.navbar-brand img {
   width: 190px;
 }
+
 div#navbarSupportedContent ul {
   margin-top: 0px;
 }
@@ -3915,16 +3916,7 @@ div#navbarSupportedContent ul {
   position: relative;
 }
 
-.footer-left ul li:nth-child(1):after {
-  position: absolute;
-  content: "";
-  right: -7px;
-  height: 23px;
-  width: 1px;
-  background: #c2c0c0;
-  top: 19px;
-  color: #212529;
-}
+
 
 .footer-left p {
   color: #535353;
@@ -5321,15 +5313,20 @@ a.subs_started {
   padding-left: 20px;
   padding-top: 20px;
 }
+
 .btn-header {
   margin-top: 0;
 }
-.info-content ul,.info-content ol {
+
+.info-content ul,
+.info-content ol {
   padding-left: 20px;
 }
+
 .info-content h2 {
   font-weight: 500;
 }
+
 .info-content h1 {
   font-weight: 500;
 }
@@ -5338,19 +5335,35 @@ a.subs_started {
   font-size: 24px;
   font-weight: 500;
 }
-.info-content ul li, .info-content ol li {
+
+.info-content ul li,
+.info-content ol li {
   padding-bottom: 8px;
 }
-.info-content ul li p, .info-content ol li p{
+
+.info-content ul li p,
+.info-content ol li p {
   margin-bottom: 0px;
 }
+
 .info-content {
   font-family: "Poppins", sans-serif;
 }
+
+footer .footer-left li a img {
+  filter: brightness(0.1);
+}
+
 /********************responsive*************************/
 
 @media (max-width:767px) {
-
+  footer {
+    padding-bottom: 1rem;
+}
+  .footer p{    margin-bottom: 1rem;}
+  .welcome-section .row {
+    flex-direction: column-reverse;
+  }
 
   .welcome-right h2,
   .jobs-head h2,
@@ -5422,6 +5435,7 @@ a.subs_started {
   .cta1left {
     padding-right: 0;
     padding-bottom: 0;
+    text-align: center;
   }
 
   .cta1right {
@@ -6039,10 +6053,10 @@ section.contact-banner .breadcrumb-item+.breadcrumb-item::before {
 .contact-left p {
   padding: 70px 62px 0px 0px;
   color: black;
-  font-weight: 400;
+  font-weight: 300;
   font-family: "Poppins", sans-serif;
   line-height: 39px;
-  font-size: 15px;
+  font-size: 24px;
 }
 
 .contact-form1 {
@@ -6235,11 +6249,11 @@ div#Journey-part p {
   background: #F05A28 !important;
   font-size: 29px !important;
   transform: translateY(-50%);
-  width: 30px !important;
-  height: 30px !important;
+  width: 35px !important;
+  height: 35px !important;
   padding: 40px !important;
   border-radius: 50% !important;
-  position: relative !important;
+  position: relative !important;    line-height: 50px !important;
 }
 
 .job22 button.owl-prev span {
@@ -6253,11 +6267,11 @@ div#Journey-part p {
   background: #F05A28 !important;
   font-size: 29px !important;
   transform: translateY(-50%) !important;
-  width: 30px !important;
-  height: 30px !important;
+  width: 35px !important;
+  height: 35px !important;
   padding: 40px !important;
   border-radius: 50% !important;
-  position: relative !important;
+  position: relative !important;    line-height: 50px !important;
 }
 
 /* .job22 button.owl-next {
@@ -6278,7 +6292,7 @@ div#Journey-part p {
 }
 
 .feature-job.job22 {
-  margin-bottom: 80px !important;
+  margin-bottom: 80px;
 }
 
 .sub-detail button:hover {
@@ -6289,27 +6303,32 @@ div#Journey-part p {
   padding-left: 10px;
 }
 
-.footer img.img-fluid {
-  filter: grayscale(1);
-}
 
 .subs_price h4 span {
   padding-left: 10px;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 .slick-next:before {
-  content: "\f105" !important;    font-family: "FontAwesome"!important;
+  content: "\f105" !important;
+  font-family: "FontAwesome" !important;
 }
+
 .slick-prev:before {
-  content: "\f104" !important;    font-family: "FontAwesome" !important;
+  content: "\f104" !important;
+  font-family: "FontAwesome" !important;
 }
+
 .slick-prev:before {
   font-size: 25px;
   line-height: 36px;
 }
-.slick-prev, .slick-next {
+
+.slick-prev,
+.slick-next {
   width: 60px !important;
   height: 60px !important;
   border: 1px solid #E4E7ED;
@@ -6319,28 +6338,47 @@ html {
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
-.slick-prev:before, .slick-next:before{color: #4e8295 !important;}
-.slick-prev:hover, .slick-next:hover{background-color: #F05A28 !important;}
-.slick-prev:hover::before, .slick-next:hover::before{color: #fff !important;}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #4e8295 !important;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background-color: #F05A28 !important;
+}
+
+.slick-prev:hover::before,
+.slick-next:hover::before {
+  color: #fff !important;
+}
 
 .slick-prev {
   position: absolute;
   top: 50%;
-  font-size: 0;      left: auto !important;
+  font-size: 0;
+  left: auto !important;
   right: 62px !important;
 }
+
 .slick-next {
   position: absolute;
   top: 50%;
   font-size: 0;
 }
- .slick-next:before {
+
+.slick-next:before {
   font-size: 25px;
   line-height: 36px;
 }
 
-
-
+.owl-nav {
+  text-align: center;
+}
+.owl-nav button {
+  margin: 4px;
+}
 
 
 
@@ -6355,23 +6393,87 @@ html {
 
 
 @media (max-width:767px) {
-  .slick-prev{    right: 43px !important;}
-  .slick-prev, .slick-next{    width: 40px !important; height: 40px !important;     top: -25px !important;}
+  .software {
+    text-align: center;
+  }
+
+  .contactbox1 img {
+    width: 55px;
+  }
+
+  a.navbar-brand img {
+    width: auto;
+  }
+
+  .contact-banner {
+    padding: 40px 0px 30px 0px;
+  }
+
+  .slick-prev {
+    right: 43px !important;
+  }
+
+  .slick-prev,
+  .slick-next {
+    width: 40px !important;
+    height: 40px !important;
+    top: -25px !important;
+  }
+
   .jobs-right {
-    margin-left: 12px;}
-  span.urgent, span.private{margin-left: 5px;}
-  .jobs-right .span-btn{font-size: 11px;}
+    margin-left: 12px;
+  }
+
+  span.urgent,
+  span.private {
+    margin-left: 5px;
+    padding: 3px 15px;
+
+  }
+
+  span.fulltime {
+    padding: 3px 15px;
+  }
+
+  .jobs-right .span-btn {
+    font-size: 11px;
+  }
+
+  .swiper-bg .exp-para {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+
+  .view-btn {
+    padding-top: 1rem;
+  }
+
+  .sub-detail button {
+    font-size: 18px;
+    padding: 15px;
+  }
+
   .welcome-section {
-    margin-top: -50px;
-}
-  .swipe{    min-height: 275px;}
-  .contactmain-box{padding: 20px;}
+    margin-top: -80px;
+  }
+
+  .swipe {
+    min-height: 275px;
+  }
+
+  .contactmain-box {
+    padding: 20px;
+    margin: 0;
+  }
+
   .gettouch h1 {
-    font-size: 32px;}
+    font-size: 32px;
+  }
 
   .main_wrap {
     padding: 30px 0 10px;
-}
+  }
+
   .subs_featheadp {
     padding-left: 0;
   }
@@ -6390,11 +6492,13 @@ html {
   }
 
   .work-left.abt-work {
-    text-align: left;    padding-top: 2rem;
+    text-align: left;
+    padding-top: 2rem;
   }
 
   .banner-left .searchform {
-    display: block;    width: 100%;
+    display: block;
+    width: 100%;
   }
 
   .searchform .devider {
@@ -6415,8 +6519,22 @@ html {
   }
 
   .compressive.-part {
-    position: relative;
+    position: relative;    top: 20%;
   }
+  .info-content ul, .info-content ol {
+    padding-left: 0px;
+}
+.welcome-right.abt2 p {
+  line-height: 28px;
+  font-size: 15px;
+}
+.welcome-section.welcome-about {
+  margin: 0;
+}
+.welcome-about .welcome-right.abt2 {
+  margin: 0;
+  padding: 0;
+}
 
   .compressive.-part h4 {
     font-size: 25px;
@@ -6456,18 +6574,22 @@ html {
   }
 
   div#Journey-part {
-    margin-top: 50px;
+    margin-top: 20px;
   }
 
   .contact-left p {
-    padding: 0px;    line-height: 28px;
+    padding: 0px;
+    line-height: 28px;
+    font-size: 16px;
   }
+
   .contact-from-part {
     margin-top: 10px;
-}
-.map-part {
-  margin-top: 20px;
-}
+  }
+
+  .map-part {
+    margin-top: 20px;
+  }
 
   .contact-from-part .contact-left:first-child:after {
     background: #73737300;
@@ -6514,7 +6636,7 @@ html {
   }
 
   .software-right p {
-    text-align: left;
+    text-align: center;
     font-size: 17px;
     line-height: 28px !important;
   }
@@ -6588,11 +6710,28 @@ html {
 
   .jobs-head {
     padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+  }
+
+  .jobs {
+    padding: 15px 10px;
+    margin-bottom: 15px;        min-height: auto;
+  }
+
+  section.contact-detail {
+    z-index: 0;
+    position: relative;
   }
 
   .feature-job {
-    margin-top: 20px;    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 30px !important;
   }
+  .job22 .owl-nav {
+    margin-top: 20px !important;        text-align: center;
+}
 
   div#navbarSupportedContent {
     position: absolute;
@@ -6603,7 +6742,7 @@ html {
     top: 65px;
     padding: 10px;
     bottom: 0;
-    height: 32vh;
+    height: fit-content;
   }
 
   .navbar-expand-lg .navbar-nav .nav-link {
@@ -6632,7 +6771,7 @@ html {
   }
 
   .nextpagebutton {
-    text-align: left;
+    text-align: center;
   }
 
   .footer-left ul li:nth-child(1) {
